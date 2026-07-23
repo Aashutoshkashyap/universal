@@ -1,13 +1,12 @@
-import { Phone, Mail, ClipboardList, BookOpen, Briefcase, FlaskConical } from "lucide-react";
+import { createElement } from "react";
+import type { SiteContent } from "@/lib/site-content";
+import { getSiteIcon } from "@/lib/site-assets";
 
-const topBarLinks = [
-  { icon: <ClipboardList className="w-4 h-4" />, label: "Admissions", href: "https://uesc.edu.np/apply" },
-  { icon: <BookOpen className="w-4 h-4" />, label: "Gyanyog", href: "https://uesc.edu.np/gyanyog" },
-  { icon: <Briefcase className="w-4 h-4" />, label: "Career", href: "#careers" },
-  { icon: <FlaskConical className="w-4 h-4" />, label: "Research (ICAS)", href: "https://uesc.edu.np/icas" },
-];
+type TopBarProps = {
+  content: SiteContent["topBar"];
+};
 
-export default function TopBar() {
+export default function TopBar({ content }: TopBarProps) {
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] bg-[#0A3073] text-white">
       {/*
@@ -19,37 +18,48 @@ export default function TopBar() {
         {/* Left — Contact Info — aligns with logo */}
         <div className="flex items-center gap-4 shrink-0">
           <a
-            href="tel:+97715268419"
-            aria-label="Call UESC at +977-1-5268419 or +977 9869055176"
+            href={content.phone.href}
+            aria-label={content.phone.ariaLabel}
             className="flex items-center gap-1.5 hover:text-blue-200 transition-colors whitespace-nowrap"
           >
-            <Phone className="w-4 h-4 shrink-0" />
-            <span className="hidden min-[360px]:inline">+977-1-5268419</span>
-            <span className="hidden lg:inline"> / +977 9869055176</span>
+            {createElement(getSiteIcon("phone"), {
+              className: "w-4 h-4 shrink-0",
+            })}
+            <span className="hidden min-[360px]:inline">
+              {content.phone.primaryLabel}
+            </span>
+            <span className="hidden lg:inline">
+              {" / "}
+              {content.phone.secondaryLabel}
+            </span>
           </a>
           <span className="hidden text-white/30 lg:block">|</span>
           <a
-            href="mailto:info@uesc.edu.np"
+            href={content.email.href}
             className="hidden lg:flex items-center gap-1.5 hover:text-blue-200 transition-colors whitespace-nowrap"
           >
-            <Mail className="w-4 h-4 shrink-0" />
-            <span>info@uesc.edu.np</span>
+            {createElement(getSiteIcon("mail"), {
+              className: "w-4 h-4 shrink-0",
+            })}
+            <span>{content.email.label}</span>
           </a>
         </div>
 
         {/* Right — Quick Links — Research (ICAS) aligns above Online Admission */}
         <div className="flex items-center gap-0.5">
-          {topBarLinks.map((link, idx) => (
-            <span key={link.label} className="flex items-center">
+          {content.quickLinks.map((link, idx) => (
+            <span key={link.id} className="flex items-center">
               <a
                 href={link.href}
                 aria-label={link.label}
                 className="flex items-center gap-1.5 px-1.5 py-0.5 lg:px-2.5 hover:text-blue-200 transition-colors whitespace-nowrap"
               >
-                {link.icon}
+                {createElement(getSiteIcon(link.iconKey), {
+                  className: "w-4 h-4",
+                })}
                 <span className="hidden lg:inline">{link.label}</span>
               </a>
-              {idx < topBarLinks.length - 1 && (
+              {idx < content.quickLinks.length - 1 && (
                 <span aria-hidden="true" className="hidden text-white/30 lg:inline">|</span>
               )}
             </span>

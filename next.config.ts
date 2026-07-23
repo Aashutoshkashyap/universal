@@ -26,6 +26,10 @@ const securityHeaders = [
     value: "strict-origin-when-cross-origin",
   },
   {
+    key: "Strict-Transport-Security",
+    value: "max-age=31536000",
+  },
+  {
     key: "Permissions-Policy",
     value: "camera=(), geolocation=(), microphone=()",
   },
@@ -45,9 +49,12 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  experimental: {
+    inlineCss: true,
+  },
   images: {
     deviceSizes: [360, 420, 640, 750, 828, 1080, 1200, 1360],
-    qualities: [35, 45, 55, 65, 75],
+    qualities: [25, 35, 45, 55, 65, 75],
   },
   async headers() {
     return [

@@ -2,8 +2,25 @@
 
 import { useState, type FormEvent } from "react";
 import { ArrowRight } from "lucide-react";
+import type { SiteContent } from "@/lib/site-content";
 
-export default function ContactForm() {
+type ContactFormContent = SiteContent["contact"]["form"];
+
+function fillTemplate(
+  template: string,
+  values: Record<"name" | "email" | "phone" | "message", string>,
+) {
+  return template.replace(
+    /\{(name|email|phone|message)\}/g,
+    (_, key: keyof typeof values) => values[key],
+  );
+}
+
+export default function ContactForm({
+  content,
+}: {
+  content: ContactFormContent;
+}) {
   const [openingEmail, setOpeningEmail] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -14,13 +31,21 @@ export default function ContactForm() {
     const email = String(data.get("email") ?? "");
     const phone = String(data.get("phone") ?? "");
     const message = String(data.get("message") ?? "");
-    const subject = encodeURIComponent(`UESC website enquiry from ${name}`);
+    const templateValues = {
+      name,
+      email,
+      phone: phone || content.emptyPhoneFallback,
+      message: message || content.emptyMessageFallback,
+    };
+    const subject = encodeURIComponent(
+      fillTemplate(content.subjectTemplate, templateValues),
+    );
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone / WhatsApp: ${phone || "Not provided"}\n\nMessage:\n${message || "I would like more information about UESC."}`,
+      fillTemplate(content.bodyTemplate, templateValues),
     );
 
     setOpeningEmail(true);
-    window.location.href = `mailto:info@uesc.edu.np?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${content.recipientEmail}?subject=${subject}&body=${body}`;
     window.setTimeout(() => setOpeningEmail(false), 4000);
   };
 
@@ -33,56 +58,56 @@ export default function ContactForm() {
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <label htmlFor="contact-name" className="sr-only">
-            Your name
+            {content.nameLabel}
           </label>
           <input
             id="contact-name"
             name="name"
             autoComplete="name"
             type="text"
-            placeholder="Your Name"
+            placeholder={content.namePlaceholder}
             required
             className="w-full rounded-xl border border-black/10 bg-black/5 px-5 py-4 text-sm text-black placeholder-black/55 transition-colors focus:border-black focus:outline-none"
           />
           <label htmlFor="contact-phone" className="sr-only">
-            Phone or WhatsApp number
+            {content.phoneLabel}
           </label>
           <input
             id="contact-phone"
             name="phone"
             autoComplete="tel"
             type="tel"
-            placeholder="Phone / WhatsApp"
+            placeholder={content.phonePlaceholder}
             className="w-full rounded-xl border border-black/10 bg-black/5 px-5 py-4 text-sm text-black placeholder-black/55 transition-colors focus:border-black focus:outline-none"
           />
         </div>
         <label htmlFor="contact-email" className="sr-only">
-          Email address
+          {content.emailLabel}
         </label>
         <input
           id="contact-email"
           name="email"
           autoComplete="email"
           type="email"
-          placeholder="Email Address"
+          placeholder={content.emailPlaceholder}
           required
           className="w-full rounded-xl border border-black/10 bg-black/5 px-5 py-4 text-sm text-black placeholder-black/55 transition-colors focus:border-black focus:outline-none"
         />
         <label htmlFor="contact-message" className="sr-only">
-          Your message
+          {content.messageLabel}
         </label>
         <textarea
           id="contact-message"
           name="message"
           rows={4}
-          placeholder="Your Message..."
+          placeholder={content.messagePlaceholder}
           className="w-full resize-none rounded-xl border border-black/10 bg-black/5 px-5 py-4 text-sm text-black placeholder-black/55 transition-colors focus:border-black focus:outline-none"
         />
         <button
           type="submit"
           className="inline-flex items-center gap-3 rounded-full bg-blue-600 px-10 py-4 text-xs font-semibold uppercase tracking-widest text-white shadow-md transition-all hover:bg-red-700"
         >
-          {openingEmail ? "Opening Email App…" : "Email Admissions"}
+          {openingEmail ? content.submittingLabel : content.submitLabel}
           <ArrowRight className="h-4 w-4" />
         </button>
       </form>
@@ -91,8 +116,7 @@ export default function ContactForm() {
         className="mt-6 max-w-md text-sm font-light leading-relaxed text-black/70"
         role={openingEmail ? "status" : undefined}
       >
-        Submitting this form opens your email app with the message prepared for
-        info@uesc.edu.np. You can review it before sending.
+        {content.note}
       </p>
     </>
   );

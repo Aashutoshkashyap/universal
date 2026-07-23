@@ -23,11 +23,7 @@ function isAuthorized(authorization: string | null, secret: string | undefined) 
 function getSupabaseConfiguration() {
   const url =
     process.env.SUPABASE_URL ?? process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-  const key =
-    process.env.SUPABASE_PUBLISHABLE_KEY ??
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
-    "";
+  const key = process.env.SUPABASE_SECRET_KEY ?? "";
 
   if (!url || !key) {
     return null;
@@ -57,8 +53,8 @@ async function queryDatabase(baseUrl: URL, key: string) {
     "Cache-Control": "no-cache",
   };
 
-  // Legacy Supabase anon keys are JWTs. New publishable keys must only be sent
-  // through the apikey header unless a separate user JWT is available.
+  // Legacy Supabase service-role JWT keys also require the Authorization
+  // header. New Supabase secret keys use the apikey header only.
   if (key.startsWith("eyJ")) {
     headers.Authorization = `Bearer ${key}`;
   }

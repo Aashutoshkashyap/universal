@@ -1,61 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import {
-  BookOpen,
-  FlaskConical,
-  Building2,
-  Trophy,
-  GraduationCap,
-} from "lucide-react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { getSiteIcon } from "@/lib/site-assets";
+import type { SiteContent } from "@/lib/site-content";
 
-const steps = [
-  {
-    stage: "Foundation",
-    title: "Strong Academic Foundation",
-    description:
-      "Build the subject knowledge and study practices required by your chosen program. Each UESC program follows its own Pokhara University curriculum and schedule.",
-    icon: BookOpen,
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-  },
-  {
-    stage: "Applied Learning",
-    title: "Laboratories & Technical Projects",
-    description:
-      "Move from theory into hands-on practice through laboratory work, technical exercises, and collaborative projects that strengthen core engineering skills.",
-    icon: FlaskConical,
-    color: "text-emerald-600",
-    bg: "bg-emerald-50",
-  },
-  {
-    stage: "Engagement",
-    title: "Industry Exposure & Research",
-    description:
-      "Broaden your perspective through technical activities, workshops, and applied research initiatives, including opportunities connected with ICAS. Activities vary by program and academic year.",
-    icon: Building2,
-    color: "text-orange-600",
-    bg: "bg-orange-50",
-  },
-  {
-    stage: "Project Stage",
-    title: "Capstone Project & Career Preparation",
-    description:
-      "Bring together your learning in a major project while developing the communication, teamwork, and professional preparation needed for employment or further study.",
-    icon: Trophy,
-    color: "text-red-600",
-    bg: "bg-red-50",
-  },
-  {
-    stage: "Next Step",
-    title: "Ready for Industry, Higher Studies & Innovation",
-    description:
-      "Graduate with technical knowledge, teamwork experience, and a professional mindset that can support a career, postgraduate study, or further innovation.",
-    icon: GraduationCap,
-    color: "text-[#0A3073]",
-    bg: "bg-blue-50",
-  },
-];
+type CareerDevelopmentContent = SiteContent["careerDevelopment"];
+type CareerTone = CareerDevelopmentContent["steps"][number]["tone"];
+
+const toneClasses: Record<CareerTone, { color: string; bg: string }> = {
+  blue: { color: "text-blue-600", bg: "bg-blue-50" },
+  emerald: { color: "text-emerald-600", bg: "bg-emerald-50" },
+  orange: { color: "text-orange-600", bg: "bg-orange-50" },
+  red: { color: "text-red-600", bg: "bg-red-50" },
+  navy: { color: "text-[#0A3073]", bg: "bg-blue-50" },
+};
 
 /** Each step gets 70vh of scrollable space; the sticky panel fills the rest */
 const STEP_VH = 70;
@@ -77,12 +35,18 @@ function getScrollGeometry(
   };
 }
 
-export default function CareerDevelopment() {
+export default function CareerDevelopment({
+  content,
+}: {
+  content: CareerDevelopmentContent;
+}) {
+  const steps = content.steps;
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const stickyPanelRef = useRef<HTMLDivElement>(null);
   const activeStep = steps[activeIndex];
-  const ActiveIcon = activeStep.icon;
+  const ActiveIcon = getSiteIcon(activeStep.iconKey);
+  const activeTone = toneClasses[activeStep.tone];
 
   /* ── Scroll listener: maps scroll-progress → active step ── */
   useEffect(() => {
@@ -151,7 +115,7 @@ export default function CareerDevelopment() {
       }
       if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
     };
-  }, []);
+  }, [steps.length]);
 
   const scrollToStep = (index: number) => {
     const section = sectionRef.current;
@@ -173,6 +137,10 @@ export default function CareerDevelopment() {
       behavior: prefersReducedMotion ? "auto" : "smooth",
     });
   };
+
+  if (!content.enabled) {
+    return null;
+  }
 
   return (
     <section
@@ -199,7 +167,7 @@ export default function CareerDevelopment() {
               <div className="inline-flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-red-600" />
                 <span className="text-[10px] uppercase tracking-[0.18em] font-bold text-red-600">
-                  Career Development
+                  {content.eyebrow}
                 </span>
               </div>
 
@@ -207,15 +175,16 @@ export default function CareerDevelopment() {
                 style={{ fontFamily: "var(--font-serif)" }}
                 className="text-3xl xl:text-4xl text-black leading-tight"
               >
-                Preparing You for<br />
-                Success Beyond<br />
-                Graduation
+                {content.heading.split("\n").map((line, index) => (
+                  <Fragment key={`${line}-${index}`}>
+                    {index > 0 ? <br /> : null}
+                    {line}
+                  </Fragment>
+                ))}
               </h2>
 
               <p className="text-[13px] text-black/60 font-light leading-relaxed">
-                Your journey at UESC extends far beyond the classroom. Through
-                career guidance, practical learning, and industry engagement, we
-                help students build the confidence and skills needed to thrive.
+                {content.description}
               </p>
             </div>
 
@@ -227,7 +196,7 @@ export default function CareerDevelopment() {
               <div
                 className="absolute left-[7px] top-2 w-[2px] bg-red-600 rounded-full transition-all duration-700 ease-in-out"
                 style={{
-                  height: `calc(${((activeIndex) / (steps.length - 1)) * 100}% )`,
+                  height: `calc(${(activeIndex / Math.max(steps.length - 1, 1)) * 100}% )`,
                 }}
               />
 
@@ -236,7 +205,7 @@ export default function CareerDevelopment() {
                 const isPast = i < activeIndex;
                 return (
                   <button
-                    key={s.stage}
+                    key={s.id}
                     type="button"
                     onClick={() => scrollToStep(i)}
                     aria-current={isActive ? "step" : undefined}
@@ -285,15 +254,15 @@ export default function CareerDevelopment() {
           ════════════════════════════════ */}
           <div className="relative flex w-full flex-1 items-start justify-center lg:items-center lg:justify-start">
             <div
-              key={activeStep.stage}
+              key={activeStep.id}
               aria-live="polite"
               className="absolute w-full max-w-xl"
             >
               {/* Icon */}
               <div
-                className={`flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm lg:mb-8 lg:h-20 lg:w-20 lg:rounded-3xl ${activeStep.bg} mb-4 [@media(max-height:500px)]:mb-2 [@media(max-height:500px)]:h-10 [@media(max-height:500px)]:w-10`}
+                className={`flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm lg:mb-8 lg:h-20 lg:w-20 lg:rounded-3xl ${activeTone.bg} mb-4 [@media(max-height:500px)]:mb-2 [@media(max-height:500px)]:h-10 [@media(max-height:500px)]:w-10`}
               >
-                <ActiveIcon className={`h-7 w-7 lg:h-10 lg:w-10 ${activeStep.color} [@media(max-height:500px)]:h-5 [@media(max-height:500px)]:w-5`} />
+                <ActiveIcon className={`h-7 w-7 lg:h-10 lg:w-10 ${activeTone.color} [@media(max-height:500px)]:h-5 [@media(max-height:500px)]:w-5`} />
               </div>
 
               {/* Stage badge */}
@@ -318,11 +287,14 @@ export default function CareerDevelopment() {
               <div className="flex items-center gap-3">
                 {steps.map((step, dotIdx) => (
                   <button
-                    key={step.stage}
+                    key={step.id}
                     type="button"
                     onClick={() => scrollToStep(dotIdx)}
                     className="flex h-7 min-w-7 items-center justify-center rounded-full"
-                    aria-label={`Show ${step.stage.toLowerCase()} information`}
+                    aria-label={content.stepButtonAriaLabelTemplate.replaceAll(
+                      "{stage}",
+                      step.stage,
+                    )}
                     aria-current={dotIdx === activeIndex ? "step" : undefined}
                   >
                     <span
@@ -344,7 +316,7 @@ export default function CareerDevelopment() {
               <div className="mt-2 flex flex-col gap-0.5 lg:hidden [@media(max-height:700px)]:hidden">
                 {steps.map((s, btnIdx) => (
                   <button
-                    key={s.stage}
+                    key={s.id}
                     type="button"
                     onClick={() => scrollToStep(btnIdx)}
                     aria-current={btnIdx === activeIndex ? "step" : undefined}

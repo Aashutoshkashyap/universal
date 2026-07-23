@@ -1,14 +1,15 @@
 import type { MetadataRoute } from "next";
+import { getSiteContent } from "@/lib/site-content-store";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { sitemap } = (await getSiteContent()).seo;
+
   return [
     {
-      url: "https://uesc.edu.np/",
-      changeFrequency: "weekly",
-      priority: 1,
-      images: [
-        "https://uesc.edu.np/opengraph-image.png",
-      ],
+      url: sitemap.url,
+      changeFrequency: sitemap.changeFrequency,
+      priority: sitemap.priority,
+      images: sitemap.imageUrls,
     },
   ];
 }

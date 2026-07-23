@@ -1,12 +1,15 @@
 import type { MetadataRoute } from "next";
+import { getSiteContent } from "@/lib/site-content-store";
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const { robots } = (await getSiteContent()).seo;
+
   return {
     rules: {
-      userAgent: "*",
-      allow: "/",
+      userAgent: robots.userAgent,
+      allow: robots.allow,
     },
-    sitemap: "https://uesc.edu.np/sitemap.xml",
-    host: "https://uesc.edu.np",
+    sitemap: robots.sitemap,
+    host: robots.host,
   };
 }
