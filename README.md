@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UESC website refresh
 
-## Getting Started
+Modern, accessible landing-page refresh for Universal Engineering & Science College (UESC), built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+The page keeps the approved section layout while using authentic supplied UESC imagery, official college contact details, Pokhara University affiliation, and performance-oriented local assets.
+
+## Local development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verification
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run check
+npm run start
+```
 
-## Learn More
+With the production server running on port 3000, the local audits are:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lighthouse
+npm run lighthouse:desktop
+npm run lighthouse:agentic
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The repository also includes SEO metadata, a sitemap, crawler guidance, structured college data, and an `llms.txt` summary.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This checkout is a homepage refresh. It deliberately links to the current UESC website for admissions, program details, downloads, notices, scholarships, and ICAS. Preserve or rebuild those routes before mapping this app to `uesc.edu.np`; otherwise a full-domain cutover would make the existing linked pages unavailable. Confirm current programs, admissions dates, fees, scholarships, and contact details directly with UESC before that launch.

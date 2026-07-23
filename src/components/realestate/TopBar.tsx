@@ -1,12 +1,10 @@
-"use client";
-
-import { Phone, Mail, Video, BookOpen, Briefcase, FlaskConical } from "lucide-react";
+import { Phone, Mail, ClipboardList, BookOpen, Briefcase, FlaskConical } from "lucide-react";
 
 const topBarLinks = [
-  { icon: <Video className="w-4 h-4" />, label: "Virtual Tour", href: "#" },
-  { icon: <BookOpen className="w-4 h-4" />, label: "Gyanyog", href: "#" },
-  { icon: <Briefcase className="w-4 h-4" />, label: "Career", href: "#" },
-  { icon: <FlaskConical className="w-4 h-4" />, label: "Research (ICAS)", href: "#" },
+  { icon: <ClipboardList className="w-4 h-4" />, label: "Admissions", href: "https://uesc.edu.np/apply" },
+  { icon: <BookOpen className="w-4 h-4" />, label: "Gyanyog", href: "https://uesc.edu.np/gyanyog" },
+  { icon: <Briefcase className="w-4 h-4" />, label: "Career", href: "#careers" },
+  { icon: <FlaskConical className="w-4 h-4" />, label: "Research (ICAS)", href: "https://uesc.edu.np/icas" },
 ];
 
 export default function TopBar() {
@@ -22,15 +20,17 @@ export default function TopBar() {
         <div className="flex items-center gap-4 shrink-0">
           <a
             href="tel:+97715268419"
+            aria-label="Call UESC at +977-1-5268419 or +977 9869055176"
             className="flex items-center gap-1.5 hover:text-blue-200 transition-colors whitespace-nowrap"
           >
             <Phone className="w-4 h-4 shrink-0" />
-            <span>+977-1-5268419 / +977 9869055176</span>
+            <span className="hidden min-[360px]:inline">+977-1-5268419</span>
+            <span className="hidden lg:inline"> / +977 9869055176</span>
           </a>
-          <span className="text-white/30 hidden sm:block">|</span>
+          <span className="hidden text-white/30 lg:block">|</span>
           <a
             href="mailto:info@uesc.edu.np"
-            className="hidden sm:flex items-center gap-1.5 hover:text-blue-200 transition-colors whitespace-nowrap"
+            className="hidden lg:flex items-center gap-1.5 hover:text-blue-200 transition-colors whitespace-nowrap"
           >
             <Mail className="w-4 h-4 shrink-0" />
             <span>info@uesc.edu.np</span>
@@ -43,13 +43,14 @@ export default function TopBar() {
             <span key={link.label} className="flex items-center">
               <a
                 href={link.href}
-                className="flex items-center gap-1.5 px-2.5 py-0.5 hover:text-blue-200 transition-colors whitespace-nowrap"
+                aria-label={link.label}
+                className="flex items-center gap-1.5 px-1.5 py-0.5 lg:px-2.5 hover:text-blue-200 transition-colors whitespace-nowrap"
               >
                 {link.icon}
-                <span className="hidden sm:inline">{link.label}</span>
+                <span className="hidden lg:inline">{link.label}</span>
               </a>
               {idx < topBarLinks.length - 1 && (
-                <span className="text-white/30">|</span>
+                <span aria-hidden="true" className="hidden text-white/30 lg:inline">|</span>
               )}
             </span>
           ))}

@@ -1,4 +1,8 @@
 import { ArrowRight, Award, GraduationCap, Rocket, Sparkles } from "lucide-react";
+import Image from "next/image";
+import campusAerial from "../../../assets/images/hero1.webp";
+import collegeReception from "../../../assets/images/hero3.webp";
+import computerLab from "../../../assets/images/hero4.webp";
 
 export default function About() {
   return (
@@ -16,27 +20,27 @@ export default function About() {
               </div>
 
               <h2
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                style={{ fontFamily: "var(--font-serif)" }}
                 className="text-[40px] sm:text-[50px] lg:text-[54px] leading-[1.1] text-black font-semibold"
               >
                 Shaping Engineers. Inspiring Innovation. Building Futures.
               </h2>
               <p className="text-base text-black/60 font-light leading-relaxed max-w-xl">
-                Established in 2000, Universal Engineering & Science College (UESC) has been preparing future engineers through quality education, research-driven learning, and practical experiences. Located in the heart of Lalitpur, UESC combines academic excellence with modern facilities, industry engagement, and an innovation-focused environment to help students build successful careers while contributing to Nepal's development.
+                Established in 2000, Universal Engineering & Science College (UESC) has been preparing future engineers through academic study, applied research, and practical learning. Located in Chakupat, Lalitpur, the college offers engineering and architecture programs affiliated with Pokhara University.
               </p>
             </div>
 
             {/* CTA Buttons row */}
             <div className="flex flex-wrap items-center gap-4">
               <a
-                href="#about"
+                href="https://uesc.edu.np/page/history"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-blue-600 hover:bg-red-600 text-white text-[12px] uppercase tracking-widest font-semibold transition-all shadow-md group"
               >
                 <span>Discover Our Story</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="#campus"
+                href="#testimonials"
                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-blue-600 text-blue-600 text-[12px] uppercase tracking-widest font-semibold hover:bg-red-600 hover:border-red-600 hover:text-white transition-all"
               >
                 Explore Campus Life
@@ -50,7 +54,7 @@ export default function About() {
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-3xl font-bold text-black">25+</div>
+                  <div style={{ fontFamily: "var(--font-serif)" }} className="text-3xl font-bold text-black">25+</div>
                   <div className="text-xs text-black/60 font-medium">Years of Excellence</div>
                 </div>
               </div>
@@ -60,8 +64,8 @@ export default function About() {
                   <GraduationCap className="w-6 h-6" />
                 </div>
                 <div>
-                  <div style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-3xl font-bold text-black">5+</div>
-                  <div className="text-xs text-black/60 font-medium">Academic Programs</div>
+                  <div style={{ fontFamily: "var(--font-serif)" }} className="text-3xl font-bold text-black">5</div>
+                  <div className="text-xs text-black/60 font-medium">Current Programs</div>
                 </div>
               </div>
 
@@ -85,10 +89,14 @@ export default function About() {
               className="absolute top-0 left-0 w-[50%] h-[45%] shadow-xl overflow-hidden"
               style={{ borderRadius: "40px 0px 40px 40px" }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-                alt="Luxury villa exterior"
-                className="w-full h-full object-cover"
+              <Image
+                src={campusAerial}
+                alt="Aerial view of the UESC campus"
+                fill
+                sizes="(max-width: 1024px) 46vw, 22vw"
+                quality={55}
+                placeholder="blur"
+                className="object-cover"
               />
             </div>
 
@@ -97,10 +105,14 @@ export default function About() {
               className="absolute top-[55%] left-0 w-[50%] h-[45%] shadow-xl overflow-hidden"
               style={{ borderRadius: "40px 0px 40px 40px" }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=700&q=80"
-                alt="Villa with sea view"
-                className="w-full h-full object-cover"
+              <Image
+                src={computerLab}
+                alt="UESC students in a computer laboratory"
+                fill
+                sizes="(max-width: 1024px) 46vw, 22vw"
+                quality={55}
+                placeholder="blur"
+                className="object-cover"
               />
             </div>
 
@@ -110,10 +122,14 @@ export default function About() {
               className="absolute top-[12%] right-[-2%] w-[50%] h-[50%] shadow-xl overflow-hidden"
               style={{ borderRadius: "40px" }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                alt="Villa pool view"
-                className="w-full h-full object-cover"
+              <Image
+                src={collegeReception}
+                alt="Reception area at Universal Engineering and Science College"
+                fill
+                sizes="(max-width: 1024px) 46vw, 22vw"
+                quality={55}
+                placeholder="blur"
+                className="object-cover"
               />
             </div>
 

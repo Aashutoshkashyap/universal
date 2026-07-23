@@ -1,31 +1,36 @@
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import campusAerial from "../../../assets/images/hero1.webp";
+import campusGarden from "../../../assets/images/hero2.webp";
+import collegeReception from "../../../assets/images/hero3.webp";
+import computerLab from "../../../assets/images/hero4.webp";
 
 export default function AcademicPrograms() {
   return (
-    <section id="news" className="py-12 lg:py-16 bg-white">
+    <section id="academics" className="py-12 lg:py-16 bg-white">
       <div className="max-w-[1400px] mx-auto px-8 sm:px-12 lg:px-16">
         <div className="mb-8 text-center sm:text-left">
           <h2
-            style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            style={{ fontFamily: "var(--font-serif)" }}
             className="text-4xl lg:text-5xl text-black mb-4"
           >
             Academic Programs
           </h2>
           <p className="text-[15px] text-black/70 font-light max-w-3xl mx-auto sm:mx-0 leading-relaxed">
-            Whether you're passionate about designing infrastructure, developing intelligent technologies, shaping sustainable cities, or leading complex construction projects, UESC offers industry-focused programs that combine academic excellence with practical experience to prepare you for tomorrow's challenges.
+            Whether you&apos;re passionate about designing infrastructure, developing intelligent technologies, shaping sustainable cities, or leading complex construction projects, UESC offers industry-focused programs that combine academic excellence with practical experience to prepare you for tomorrow&apos;s challenges.
           </p>
         </div>
 
         {/* UNDERGRADUATE */}
-        <div className="mb-6">
-          <h3 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-3xl text-black border-b border-black/10 pb-3 mb-8">
+        <div id="undergraduate" className="mb-6 scroll-mt-32">
+          <h3 style={{ fontFamily: "var(--font-serif)" }} className="text-3xl text-black border-b border-black/10 pb-3 mb-8">
             Undergraduate Programs
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* CARD 1 */}
             <div className="bg-[#f6f7f9] rounded-[32px] p-6 flex flex-col group border border-black/5 hover:bg-[#f0f2f5] transition-colors h-full">
               <div className="aspect-square w-full rounded-2xl overflow-hidden mb-5 relative shadow-sm">
-                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="B.E. Computer Engineering" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <Image fill sizes="(max-width: 768px) calc(100vw - 80px), (max-width: 1024px) 44vw, 28vw" quality={55} src={computerLab} alt="Students learning in the UESC computer laboratory" className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <div className="flex-1 flex flex-col justify-between">
                 <div>
@@ -35,8 +40,8 @@ export default function AcademicPrograms() {
                   </p>
                 </div>
                 <div className="mt-3 flex justify-center">
-                  <a href="#computer-engineering" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
-                    Learn More <ArrowRight className="w-3.5 h-3.5" />
+                  <a href="https://uesc.edu.np/computer" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
+                    Computer Program <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
@@ -45,7 +50,7 @@ export default function AcademicPrograms() {
             {/* CARD 2 */}
             <div className="bg-[#f6f7f9] rounded-[32px] p-6 flex flex-col group border border-black/5 hover:bg-[#f0f2f5] transition-colors h-full">
               <div className="aspect-square w-full rounded-2xl overflow-hidden mb-5 relative shadow-sm">
-                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="B.E. Civil Engineering" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <Image fill sizes="(max-width: 768px) calc(100vw - 80px), (max-width: 1024px) 44vw, 28vw" quality={55} src={campusAerial} alt="Aerial view of the UESC campus and surrounding buildings" className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <div className="flex-1 flex flex-col justify-between">
                 <div>
@@ -55,8 +60,8 @@ export default function AcademicPrograms() {
                   </p>
                 </div>
                 <div className="mt-3 flex justify-center">
-                  <a href="#civil-engineering" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
-                    Learn More <ArrowRight className="w-3.5 h-3.5" />
+                  <a href="https://uesc.edu.np/civil" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
+                    Civil Program <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
@@ -65,7 +70,7 @@ export default function AcademicPrograms() {
             {/* CARD 3 */}
             <div className="bg-[#f6f7f9] rounded-[32px] p-6 flex flex-col group border border-black/5 hover:bg-[#f0f2f5] transition-colors h-full">
               <div className="aspect-square w-full rounded-2xl overflow-hidden mb-5 relative shadow-sm">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bachelor of Architecture" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <Image fill sizes="(max-width: 768px) calc(100vw - 80px), (max-width: 1024px) 44vw, 28vw" quality={55} src={campusGarden} alt="UESC academic buildings arranged around the campus garden" className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <div className="flex-1 flex flex-col justify-between">
                 <div>
@@ -75,8 +80,8 @@ export default function AcademicPrograms() {
                   </p>
                 </div>
                 <div className="mt-3 flex justify-center">
-                  <a href="#architecture" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
-                    Learn More <ArrowRight className="w-3.5 h-3.5" />
+                  <a href="https://uesc.edu.np/architecture" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
+                    Architecture Program <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
@@ -85,15 +90,15 @@ export default function AcademicPrograms() {
         </div>
 
         {/* GRADUATE */}
-        <div className="mt-16">
-          <h3 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-3xl text-black border-b border-black/10 pb-3 mb-8">
+        <div id="graduate" className="mt-16 scroll-mt-32">
+          <h3 style={{ fontFamily: "var(--font-serif)" }} className="text-3xl text-black border-b border-black/10 pb-3 mb-8">
             Graduate Programs
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* CARD 4 */}
             <div className="bg-[#f6f7f9] rounded-[32px] p-6 flex flex-col group border border-black/5 hover:bg-[#f0f2f5] transition-colors h-full">
               <div className="aspect-square w-full rounded-2xl overflow-hidden mb-5 relative shadow-sm">
-                <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="M.Sc. Construction Management" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <Image fill sizes="(max-width: 768px) calc(100vw - 80px), (max-width: 1024px) 44vw, 28vw" quality={55} src={collegeReception} alt="Reception area at Universal Engineering and Science College" className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <div className="flex-1 flex flex-col justify-between">
                 <div>
@@ -103,8 +108,8 @@ export default function AcademicPrograms() {
                   </p>
                 </div>
                 <div className="mt-3 flex justify-center">
-                  <a href="#construction-management" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
-                    Learn More <ArrowRight className="w-3.5 h-3.5" />
+                  <a href="https://uesc.edu.np/master_admission" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
+                    Construction M.Sc. <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
@@ -113,7 +118,7 @@ export default function AcademicPrograms() {
             {/* CARD 5 */}
             <div className="bg-[#f6f7f9] rounded-[32px] p-6 flex flex-col group border border-black/5 hover:bg-[#f0f2f5] transition-colors h-full">
               <div className="aspect-square w-full rounded-2xl overflow-hidden mb-5 relative shadow-sm">
-                <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="M.Sc. Transportation Engineering & Management" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <Image fill sizes="(max-width: 768px) calc(100vw - 80px), (max-width: 1024px) 44vw, 28vw" quality={55} src={campusAerial} alt="Aerial perspective of the UESC campus and nearby road network" className="object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
               <div className="flex-1 flex flex-col justify-between">
                 <div>
@@ -123,8 +128,8 @@ export default function AcademicPrograms() {
                   </p>
                 </div>
                 <div className="mt-3 flex justify-center">
-                  <a href="#transportation-engineering" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
-                    Learn More <ArrowRight className="w-3.5 h-3.5" />
+                  <a href="https://uesc.edu.np/master_admission" className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-blue-600 text-white text-[11px] uppercase tracking-widest font-bold rounded-full group-hover:bg-red-600 transition-colors duration-300 shadow-md">
+                    Transportation M.Sc. <ArrowRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>

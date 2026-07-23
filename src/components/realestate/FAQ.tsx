@@ -1,11 +1,6 @@
-"use client";
-
-import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function FAQ() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
-
   const faqs = [
     {
       q: "What programs does UESC offer?",
@@ -20,16 +15,16 @@ export default function FAQ() {
       a: "Yes. UESC offers scholarships based on merit and other applicable criteria. Scholarship opportunities, eligibility requirements, and application details are available on our Admissions page."
     },
     {
-      q: "Is UESC affiliated with Tribhuvan University?",
-      a: "Yes. Universal Engineering & Science College (UESC) is affiliated with Tribhuvan University and follows its academic curriculum and examination system."
+      q: "Is UESC affiliated with Pokhara University?",
+      a: "Yes. Universal Engineering & Science College (UESC) is affiliated with Pokhara University. Contact the college to confirm the current affiliation and curriculum for your intended program."
     },
     {
       q: "Does UESC provide practical learning opportunities?",
-      a: "Yes. Students gain hands-on experience through modern laboratories, design projects, workshops, field visits, research activities, and technical events that complement classroom learning."
+      a: "UESC's program information describes laboratory work, projects, workshops, and applied learning alongside classroom study. Confirm the current activities and facilities for your intended program directly with the college."
     },
     {
       q: "What student facilities are available on campus?",
-      a: "UESC provides modern classrooms, engineering laboratories, a library, student clubs, recreational spaces, and other facilities that support both academic and personal development."
+      a: "UESC provides classrooms, engineering laboratories, a library, and spaces that support academic activities. Contact the college or arrange a campus visit to confirm the facilities available for your program."
     },
     {
       q: "Does UESC support internships and career development?",
@@ -37,7 +32,7 @@ export default function FAQ() {
     },
     {
       q: "How can I contact the admissions office?",
-      a: "You can reach the admissions team through the Contact page, by phone, email, or by visiting the campus during office hours. Our counselors are available to answer your questions and guide you through the admission process."
+      a: "You can contact UESC through the official admission page, by phone or email, or by visiting the campus. Confirm current office hours before travelling."
     }
   ];
 
@@ -46,7 +41,7 @@ export default function FAQ() {
       <div className="max-w-[1400px] mx-auto px-8 sm:px-12 lg:px-16 flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
         
         {/* Header - Left Column on Desktop */}
-        <div className="lg:w-1/3 sticky top-24">
+        <div className="lg:sticky lg:top-24 lg:w-1/3">
           <div className="mb-8 flex flex-col items-start gap-4">
             <div className="inline-flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-red-600" />
@@ -55,10 +50,10 @@ export default function FAQ() {
               </span>
             </div>
             <h2
-              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              style={{ fontFamily: "var(--font-serif)" }}
               className="text-4xl lg:text-5xl text-black leading-tight"
             >
-              Have Questions?<br />We're Here to Help.
+              Have Questions?<br />We&apos;re Here to Help.
             </h2>
             <p className="text-[15px] text-black/60 font-light leading-relaxed mt-2">
               Find answers to some of the most frequently asked questions about admissions, academic programs, campus life, scholarships, and student services. If you need further assistance, our admissions team is always ready to help.
@@ -69,36 +64,32 @@ export default function FAQ() {
         {/* Accordion - Right Column on Desktop */}
         <div className="lg:w-2/3 w-full border-t border-black/10">
           {faqs.map((faq, idx) => (
-            <div 
-              key={idx} 
-              className="border-b border-black/10"
+            <details
+              key={faq.q}
+              name="uesc-faq"
+              open={idx === 0}
+              className="group border-b border-black/10"
             >
-              <button
-                onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                className="w-full py-6 flex items-center justify-between text-left group"
-              >
-                <h3 className="text-lg sm:text-xl text-black font-semibold pr-8 group-hover:text-red-600 transition-colors">
+              <summary className="flex w-full cursor-pointer list-none items-center justify-between py-6 text-left [&::-webkit-details-marker]:hidden">
+                <h3
+                  style={{ fontFamily: "var(--font-serif)" }}
+                  className="text-2xl sm:text-[26px] text-black pr-8 group-hover:text-red-600 transition-colors"
+                >
                   {faq.q}
                 </h3>
-                <div className="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center shrink-0 group-hover:bg-red-600 group-hover:border-red-600 group-hover:text-white transition-colors text-black/40 bg-white">
-                  {openIdx === idx ? (
-                    <Minus className="w-4 h-4" />
-                  ) : (
-                    <Plus className="w-4 h-4" />
-                  )}
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-black/5 text-black transition-all duration-300 group-hover:bg-red-600 group-hover:text-white group-open:rotate-90 group-open:bg-red-600 group-open:text-white">
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </div>
-              </button>
+              </summary>
               
-              <div 
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                  openIdx === idx ? "max-h-[300px] opacity-100 pb-8" : "max-h-0 opacity-0"
-                }`}
-              >
+              <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-300 ease-in-out group-open:grid-rows-[1fr] group-open:pb-8 group-open:opacity-100">
+                <div className="overflow-hidden">
                 <p className="text-[15px] text-black/65 font-light leading-relaxed pr-12">
                   {faq.a}
                 </p>
+                </div>
               </div>
-            </div>
+            </details>
           ))}
         </div>
 
