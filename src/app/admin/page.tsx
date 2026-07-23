@@ -179,11 +179,93 @@ export default function AdminPanel() {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-black/70 mb-1">Title</label>
-              <input value={content.academicPrograms.title} onChange={(e) => handleChange('academicPrograms', 'title', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+              <input value={content.academicPrograms?.title || ""} onChange={(e) => handleChange('academicPrograms', 'title', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
             </div>
             <div>
               <label className="block text-sm font-semibold text-black/70 mb-1">Description</label>
-              <textarea rows={4} value={content.academicPrograms.description} onChange={(e) => handleChange('academicPrograms', 'description', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+              <textarea rows={4} value={content.academicPrograms?.description || ""} onChange={(e) => handleChange('academicPrograms', 'description', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        {/* Career Development Section */}
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-black/5 space-y-5">
+          <h2 className="text-2xl font-serif border-b pb-2">Career Development</h2>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Badge Text</label>
+              <input value={content.careerDevelopment?.badge || ""} onChange={(e) => handleChange('careerDevelopment', 'badge', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Title</label>
+              <input value={content.careerDevelopment?.title || ""} onChange={(e) => handleChange('careerDevelopment', 'title', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Description</label>
+              <textarea rows={4} value={content.careerDevelopment?.description || ""} onChange={(e) => handleChange('careerDevelopment', 'description', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        {/* Testimonials (Student Voices) Section */}
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-black/5 space-y-5">
+          <h2 className="text-2xl font-serif border-b pb-2">Student Voices (Testimonials)</h2>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Badge Text</label>
+              <input value={content.testimonials?.badge || ""} onChange={(e) => handleChange('testimonials', 'badge', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Title</label>
+              <input value={content.testimonials?.title || ""} onChange={(e) => handleChange('testimonials', 'title', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Description</label>
+              <textarea rows={4} value={content.testimonials?.description || ""} onChange={(e) => handleChange('testimonials', 'description', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        {/* News & Events Section */}
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-black/5 space-y-5">
+          <h2 className="text-2xl font-serif border-b pb-2">News & Events</h2>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Badge Text</label>
+              <input value={content.newsAndEvents?.badge || ""} onChange={(e) => handleChange('newsAndEvents', 'badge', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Title</label>
+              <input value={content.newsAndEvents?.title || ""} onChange={(e) => handleChange('newsAndEvents', 'title', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Description</label>
+              <textarea rows={4} value={content.newsAndEvents?.description || ""} onChange={(e) => handleChange('newsAndEvents', 'description', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        {/* Find Us Section */}
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-black/5 space-y-5">
+          <h2 className="text-2xl font-serif border-b pb-2">Find Us (Footer)</h2>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Title</label>
+              <input value={content.findUs?.title || ""} onChange={(e) => handleChange('findUs', 'title', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Address</label>
+              <textarea rows={2} value={content.findUs?.address || ""} onChange={(e) => handleChange('findUs', 'address', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-semibold text-black/70 mb-1">Phone 1</label>
+                <input value={content.findUs?.phone1 || ""} onChange={(e) => handleChange('findUs', 'phone1', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-black/70 mb-1">Phone 2</label>
+                <input value={content.findUs?.phone2 || ""} onChange={(e) => handleChange('findUs', 'phone2', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+              </div>
             </div>
           </div>
         </div>

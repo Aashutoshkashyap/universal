@@ -1,164 +1,160 @@
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-12 lg:py-16 bg-[#fafafa]">
+    <section id="testimonials" className="py-12 lg:py-20 bg-[#fafafa]">
       <div className="max-w-[1400px] mx-auto px-8 sm:px-12 lg:px-16">
 
-        {/* Heading — matches Academic Programs section style */}
-        <div className="mb-8 text-center sm:text-left">
+        {/* Heading */}
+        <div className="mb-14 text-center sm:text-left flex flex-col items-center sm:items-start gap-4">
+          <div className="inline-flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-red-600" />
+            <span className="text-[10px] uppercase tracking-[0.18em] font-bold text-red-600">
+              Student Voices
+            </span>
+          </div>
           <h2
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
-            className="text-4xl lg:text-5xl text-black mb-3"
+            className="text-4xl lg:text-5xl text-black leading-tight max-w-2xl"
           >
-            Testimonials
+            Stories That Inspire.<br className="hidden sm:block" /> Experiences That Matter.
           </h2>
-          <p className="text-sm text-black/60 font-light max-w-xl mx-auto sm:mx-0">
-            What they're saying — trusted by creatives and leaders from various industries.
+          <p className="text-[15px] text-black/65 font-light leading-relaxed max-w-3xl mx-auto sm:mx-0">
+            Every student's journey at UESC is unique, but they share a common goal—to learn, grow, and create meaningful impact. From practical learning and research to leadership, innovation, and lifelong friendships, these experiences reflect what it means to be part of the UESC community.
           </p>
         </div>
 
         {/* Bento Masonry Grid — 3 columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
 
           {/* ── LEFT COLUMN ── */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6">
 
-            {/* Large Portrait Photo Card */}
-            <div className="relative rounded-2xl overflow-hidden h-[320px] bg-neutral-900">
-              <img
-                src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=600&q=80"
-                className="w-full h-full object-cover object-top opacity-80"
-                alt="David Portrait"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-5 h-5 rounded bg-white/20 flex items-center justify-center">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                  <span className="text-white/60 text-[10px] font-medium">Logoipsum</span>
+            {/* Testimonial 1 */}
+            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-4xl text-blue-600/20 font-serif leading-none mb-3">"</div>
+              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
+                The practical sessions and collaborative projects gave me the confidence to apply classroom concepts to real-world problems. I graduated with both technical skills and valuable teamwork experience.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm flex-shrink-0">
+                  CE
                 </div>
-                <p className="text-white font-semibold text-sm leading-snug">How Puno Automated<br />80% of Lead Handling</p>
+                <div>
+                  <p className="text-[13px] font-semibold text-black">Computer Engineering Student</p>
+                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
+                </div>
               </div>
             </div>
 
-            {/* Text Card 1 */}
-            <div className="bg-white rounded-2xl p-5 border border-black/6 shadow-sm">
-              <div className="text-2xl text-black/10 font-serif leading-none mb-3">"</div>
-              <div className="flex items-center gap-3 mb-3">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80" className="w-9 h-9 rounded-full object-cover" alt="Daniel Kim" />
+            {/* Testimonial 4 */}
+            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-4xl text-emerald-600/20 font-serif leading-none mb-3">"</div>
+              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
+                Research opportunities and faculty guidance allowed me to deepen my expertise and approach complex engineering problems with confidence.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-sm flex-shrink-0">
+                  PG
+                </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-black">Daniel Kim</p>
-                  <p className="text-[11px] text-black/40">Founder, ScaleLabs Education</p>
+                  <p className="text-[13px] font-semibold text-black">M.Sc. Student</p>
+                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
                 </div>
               </div>
-              <p className="text-[13px] text-black/60 leading-relaxed">Our enrollment process used to require manual follow-ups and spreadsheet tracking. Now, AI handles lead qualification, scheduling, reminders, and CRM updates automatically. We've increased enrollment conversion by 35% in just one quarter.</p>
             </div>
 
-            {/* Text Card 2 */}
-            <div className="bg-white rounded-2xl p-5 border border-black/6 shadow-sm">
-              <div className="text-2xl text-black/10 font-serif leading-none mb-3">"</div>
-              <div className="flex items-center gap-3 mb-3">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80" className="w-9 h-9 rounded-full object-cover" alt="Alex Johnson" />
+            {/* Testimonial 7 */}
+            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-4xl text-indigo-600/20 font-serif leading-none mb-3">"</div>
+              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
+                The projects and technical training at UESC made me feel prepared during my internship. I was able to contribute with confidence from day one.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm flex-shrink-0">
+                  FY
+                </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-black">Alex Johnson</p>
-                  <p className="text-[11px] text-black/40">Head of Operations, Finovate Consulting</p>
+                  <p className="text-[13px] font-semibold text-black">Final-Year Student</p>
+                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
                 </div>
               </div>
-              <p className="text-[13px] text-black/60 leading-relaxed">Security and compliance were major concerns for us. They designed an automation architecture that was not only efficient but enterprise-grade secure.</p>
             </div>
 
           </div>
 
           {/* ── MIDDLE COLUMN ── */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6 md:pt-10">
 
-            {/* Text Card 3 */}
-            <div className="bg-white rounded-2xl p-5 border border-black/6 shadow-sm">
-              <div className="text-2xl text-black/10 font-serif leading-none mb-3">"</div>
-              <div className="flex items-center gap-3 mb-3">
-                <img src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&w=150&q=80" className="w-9 h-9 rounded-full object-cover" alt="David Lee" />
+            {/* Testimonial 2 */}
+            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-4xl text-orange-600/20 font-serif leading-none mb-3">"</div>
+              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
+                Field visits and laboratory work made learning far more engaging. The hands-on approach helped me understand engineering beyond theory.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-600 font-bold text-sm flex-shrink-0">
+                  CV
+                </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-black">David Lee</p>
-                  <p className="text-[11px] text-black/40">Founder, Atodio Studio</p>
+                  <p className="text-[13px] font-semibold text-black">Civil Engineering Student</p>
+                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
                 </div>
               </div>
-              <p className="text-[13px] text-black/60 leading-relaxed">We were spending hours on repetitive tasks. Their automation system saved us 30+ hours per week and dramatically improved our sales performance.</p>
             </div>
 
-            {/* Text Card 4 */}
-            <div className="bg-white rounded-2xl p-5 border border-black/6 shadow-sm">
-              <div className="text-2xl text-black/10 font-serif leading-none mb-3">"</div>
-              <div className="flex items-center gap-3 mb-3">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" className="w-9 h-9 rounded-full object-cover" alt="Sarah Mitchell" />
+            {/* Testimonial 5 */}
+            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-4xl text-red-600/20 font-serif leading-none mb-3">"</div>
+              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
+                My time at UESC prepared me for the transition from university to industry. The practical learning experience continues to benefit me in my career.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-red-50 border border-red-100 flex items-center justify-center text-red-600 font-bold text-sm flex-shrink-0">
+                  AL
+                </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-black">Sarah Mitchell</p>
-                  <p className="text-[11px] text-black/40">COO, BrightPath SaaS</p>
+                  <p className="text-[13px] font-semibold text-black">UESC Alumnus</p>
+                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with name/org)</p>
                 </div>
               </div>
-              <p className="text-[13px] text-black/60 leading-relaxed">We struggled with inconsistent lead follow-ups and slow response times. Their AI automation blueprint gave us clarity first, then execution. Now, our CRM runs intelligently, leads are scored automatically, and follow-ups happen without manual effort. We've increased demo bookings by 40% while reducing operational friction.</p>
-            </div>
-
-            {/* Text Card 5 */}
-            <div className="bg-white rounded-2xl p-5 border border-black/6 shadow-sm">
-              <div className="text-2xl text-black/10 font-serif leading-none mb-3">"</div>
-              <div className="flex items-center gap-3 mb-3">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&q=80" className="w-9 h-9 rounded-full object-cover" alt="Jonathan Reed" />
-                <div>
-                  <p className="text-[13px] font-semibold text-black">Jonathan Reed</p>
-                  <p className="text-[11px] text-black/40">Managing Director, Nexora Digital Agency</p>
-                </div>
-              </div>
-              <p className="text-[13px] text-black/60 leading-relaxed">We were scaling fast but drowning in manual workflows. Their automation system connected our CRM, email marketing, and reporting into one intelligent flow. The result? 30+ hours saved per week and complete visibility across our pipeline.</p>
             </div>
 
           </div>
 
           {/* ── RIGHT COLUMN ── */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-6 md:pt-4">
 
-            {/* Text Card 6 */}
-            <div className="bg-white rounded-2xl p-5 border border-black/6 shadow-sm">
-              <div className="text-2xl text-black/10 font-serif leading-none mb-3">"</div>
-              <div className="flex items-center gap-3 mb-3">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" className="w-9 h-9 rounded-full object-cover" alt="Michael Tran" />
+            {/* Testimonial 3 */}
+            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-4xl text-purple-600/20 font-serif leading-none mb-3">"</div>
+              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
+                The studio environment encouraged creativity while challenging me to think critically about design, sustainability, and functionality.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm flex-shrink-0">
+                  AR
+                </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-black">Michael Tran</p>
-                  <p className="text-[11px] text-black/40">Founder & CEO, Skyline Realty Group</p>
+                  <p className="text-[13px] font-semibold text-black">Architecture Student</p>
+                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
                 </div>
-              </div>
-              <p className="text-[13px] text-black/60 leading-relaxed">We reduced admin work by nearly 50% and doubled our qualified appointment bookings. The ROI was faster than we expected — and the system continues to scale with us.</p>
-            </div>
-
-            {/* Large Portrait Photo Card */}
-            <div className="relative rounded-2xl overflow-hidden h-[280px] bg-neutral-900">
-              <img
-                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80"
-                className="w-full h-full object-cover object-top opacity-80"
-                alt="Laura Portrait"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-5 h-5 rounded bg-white/20 flex items-center justify-center">
-                    <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                  <span className="text-white/60 text-[10px] font-medium">Logoipsum</span>
-                </div>
-                <p className="text-white font-semibold text-sm leading-snug">Scaling SaaS Operations<br />with AI Automation</p>
               </div>
             </div>
 
-            {/* Text Card 7 */}
-            <div className="bg-white rounded-2xl p-5 border border-black/6 shadow-sm">
-              <div className="text-2xl text-black/10 font-serif leading-none mb-3">"</div>
-              <div className="flex items-center gap-3 mb-3">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" className="w-9 h-9 rounded-full object-cover" alt="Laura Martinez" />
+            {/* Testimonial 6 */}
+            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-4xl text-teal-600/20 font-serif leading-none mb-3">"</div>
+              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
+                Being part of student clubs helped me develop leadership, communication, and collaboration skills that complemented my academic journey.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 font-bold text-sm flex-shrink-0">
+                  SC
+                </div>
                 <div>
-                  <p className="text-[13px] font-semibold text-black">Laura Martinez</p>
-                  <p className="text-[11px] text-black/40">CMO, Elevate Commerce Co.</p>
+                  <p className="text-[13px] font-semibold text-black">Student Club Member</p>
+                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
                 </div>
               </div>
-              <p className="text-[13px] text-black/60 leading-relaxed">Marketing automation always felt fragmented — too many tools, not enough cohesion. They unified everything into one intelligent ecosystem. Campaign triggers, abandoned cart flows, segmentation — all automated with precision.</p>
             </div>
 
           </div>

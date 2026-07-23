@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 sm:px-12 lg:px-16 py-5 transition-all duration-500 ${scrolled
+        className={`fixed top-12 left-0 right-0 z-50 flex items-center justify-between px-8 sm:px-12 lg:px-16 py-5 transition-all duration-500 ${scrolled
           ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-black/8"
           : "bg-transparent"
           }`}
@@ -153,7 +153,7 @@ export default function Header() {
       </header>
 
       {menuOpen && (
-        <div className="fixed inset-x-0 top-[68px] z-40 bg-white border-b border-black/10 px-8 py-6 space-y-4 shadow-xl lg:hidden max-h-[80vh] overflow-y-auto">
+        <div className="fixed inset-x-0 top-[116px] z-40 bg-white border-b border-black/10 px-8 py-6 space-y-4 shadow-xl lg:hidden max-h-[80vh] overflow-y-auto">
           {["Home", "About", "Academics", "Admissions", "Student Life", "Research", "Careers", "News & Events", "Contact"].map((item) => (
             <a
               key={item}
