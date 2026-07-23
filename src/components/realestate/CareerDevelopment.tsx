@@ -60,39 +60,66 @@ const steps = [
 /** Each step gets 70vh of scrollable space; the sticky panel fills the rest */
 const STEP_VH = 70;
 
+function getScrollGeometry(
+  section: HTMLElement,
+  stickyPanel: HTMLElement,
+) {
+  const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+  const stickyTop =
+    Number.parseFloat(window.getComputedStyle(stickyPanel).top) || 0;
+
+  return {
+    scrollStart: sectionTop - stickyTop,
+    stickyTravel: Math.max(
+      section.offsetHeight - stickyPanel.offsetHeight,
+      1,
+    ),
+  };
+}
+
 export default function CareerDevelopment() {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const stickyPanelRef = useRef<HTMLDivElement>(null);
   const activeStep = steps[activeIndex];
   const ActiveIcon = activeStep.icon;
 
   /* ── Scroll listener: maps scroll-progress → active step ── */
   useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    const stickyPanel = stickyPanelRef.current;
+    if (!section || !stickyPanel) return;
 
-    let sectionTop = 0;
-    let stepPx = 1;
+    let scrollStart = 0;
+    let stickyTravel = 1;
     let animationFrame: number | null = null;
     let listenersActive = false;
 
     const measure = () => {
-      sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      stepPx = section.offsetHeight / steps.length;
+      ({ scrollStart, stickyTravel } = getScrollGeometry(
+        section,
+        stickyPanel,
+      ));
     };
 
     const onScroll = () => {
       if (animationFrame !== null) return;
       animationFrame = window.requestAnimationFrame(() => {
         animationFrame = null;
-        const scrolledIn = window.scrollY - sectionTop;
+        const scrolledIn = window.scrollY - scrollStart;
         if (scrolledIn < 0) return;
+        const progress = Math.min(Math.max(scrolledIn / stickyTravel, 0), 1);
         const idx = Math.min(
-          Math.max(Math.floor(scrolledIn / stepPx), 0),
-          steps.length - 1
+          Math.floor(progress * steps.length),
+          steps.length - 1,
         );
         setActiveIndex((current) => (current === idx ? current : idx));
       });
+    };
+
+    const onResize = () => {
+      measure();
+      onScroll();
     };
 
     const activate = () => {
@@ -101,7 +128,7 @@ export default function CareerDevelopment() {
       measure();
       onScroll();
       window.addEventListener("scroll", onScroll, { passive: true });
-      window.addEventListener("resize", measure);
+      window.addEventListener("resize", onResize);
     };
 
     const observer = new IntersectionObserver(
@@ -120,11 +147,32 @@ export default function CareerDevelopment() {
       observer.disconnect();
       if (listenersActive) {
         window.removeEventListener("scroll", onScroll);
-        window.removeEventListener("resize", measure);
+        window.removeEventListener("resize", onResize);
       }
       if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
     };
   }, []);
+
+  const scrollToStep = (index: number) => {
+    const section = sectionRef.current;
+    const stickyPanel = stickyPanelRef.current;
+    if (!section || !stickyPanel) return;
+
+    const { scrollStart, stickyTravel } = getScrollGeometry(
+      section,
+      stickyPanel,
+    );
+    const stepCenter = (index + 0.5) / steps.length;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    setActiveIndex(index);
+    window.scrollTo({
+      top: scrollStart + stickyTravel * stepCenter,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  };
 
   return (
     <section
@@ -135,9 +183,10 @@ export default function CareerDevelopment() {
     >
       {/* ── Sticky panel that locks while user scrolls through the section ── */}
       <div
-        className="sticky top-[96px] flex h-[calc(100vh-96px)] items-stretch overflow-x-hidden overflow-y-auto overscroll-contain lg:overflow-hidden"
+        ref={stickyPanelRef}
+        className="sticky top-[96px] flex h-[calc(100vh-96px)] items-stretch overflow-hidden"
       >
-        <div className="max-w-[1400px] w-full mx-auto px-8 sm:px-12 lg:px-16 flex gap-0 lg:gap-10 items-stretch py-10 lg:py-14">
+        <div className="mx-auto flex w-full max-w-[1400px] items-stretch gap-0 px-8 py-10 sm:px-12 lg:gap-10 lg:px-16 lg:py-14">
 
           {/* ════════════════════════════════
               LEFT PANEL — nav + intro copy
@@ -188,7 +237,9 @@ export default function CareerDevelopment() {
                 return (
                   <button
                     key={s.stage}
-                    onClick={() => setActiveIndex(i)}
+                    type="button"
+                    onClick={() => scrollToStep(i)}
+                    aria-current={isActive ? "step" : undefined}
                     className="group relative flex items-center gap-4 py-3.5 text-left"
                   >
                     {/* Dot */}
@@ -240,13 +291,13 @@ export default function CareerDevelopment() {
             >
               {/* Icon */}
               <div
-                className={`flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm lg:mb-8 lg:h-20 lg:w-20 lg:rounded-3xl ${activeStep.bg} mb-4`}
+                className={`flex h-14 w-14 items-center justify-center rounded-2xl shadow-sm lg:mb-8 lg:h-20 lg:w-20 lg:rounded-3xl ${activeStep.bg} mb-4 [@media(max-height:500px)]:mb-2 [@media(max-height:500px)]:h-10 [@media(max-height:500px)]:w-10`}
               >
-                <ActiveIcon className={`h-7 w-7 lg:h-10 lg:w-10 ${activeStep.color}`} />
+                <ActiveIcon className={`h-7 w-7 lg:h-10 lg:w-10 ${activeStep.color} [@media(max-height:500px)]:h-5 [@media(max-height:500px)]:w-5`} />
               </div>
 
               {/* Stage badge */}
-              <div className="mb-2 inline-flex items-center gap-2 lg:mb-4">
+              <div className="mb-2 inline-flex items-center gap-2 lg:mb-4 [@media(max-height:500px)]:mb-1">
                 <span className="h-1.5 w-1.5 rounded-full bg-red-600" />
                 <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-red-600">
                   {activeStep.stage}
@@ -255,12 +306,12 @@ export default function CareerDevelopment() {
 
               <h3
                 style={{ fontFamily: "var(--font-serif)" }}
-                className="mb-3 text-3xl leading-tight text-black lg:mb-6 lg:text-5xl"
+                className="mb-3 text-3xl leading-tight text-black lg:mb-6 lg:text-5xl [@media(max-height:500px)]:mb-2 [@media(max-height:500px)]:text-2xl"
               >
                 {activeStep.title}
               </h3>
 
-              <p className="mb-4 text-sm font-light leading-relaxed text-black/65 lg:mb-8 lg:text-[15px]">
+              <p className="mb-4 text-sm font-light leading-relaxed text-black/65 lg:mb-8 lg:text-[15px] [@media(max-height:500px)]:mb-2 [@media(max-height:500px)]:text-xs [@media(max-height:500px)]:leading-normal">
                 {activeStep.description}
               </p>
 
@@ -268,7 +319,8 @@ export default function CareerDevelopment() {
                 {steps.map((step, dotIdx) => (
                   <button
                     key={step.stage}
-                    onClick={() => setActiveIndex(dotIdx)}
+                    type="button"
+                    onClick={() => scrollToStep(dotIdx)}
                     className="flex h-7 min-w-7 items-center justify-center rounded-full"
                     aria-label={`Show ${step.stage.toLowerCase()} information`}
                     aria-current={dotIdx === activeIndex ? "step" : undefined}
@@ -289,11 +341,13 @@ export default function CareerDevelopment() {
               </div>
 
               {/* Mobile step nav (only on small screens) */}
-              <div className="mt-4 flex flex-col gap-1 lg:hidden">
+              <div className="mt-2 flex flex-col gap-0.5 lg:hidden [@media(max-height:700px)]:hidden">
                 {steps.map((s, btnIdx) => (
                   <button
                     key={s.stage}
-                    onClick={() => setActiveIndex(btnIdx)}
+                    type="button"
+                    onClick={() => scrollToStep(btnIdx)}
+                    aria-current={btnIdx === activeIndex ? "step" : undefined}
                     className={`rounded-xl px-4 py-1.5 text-left text-xs font-medium transition-colors ${
                       btnIdx === activeIndex
                         ? "bg-red-50 text-red-700"
