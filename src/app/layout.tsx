@@ -13,10 +13,10 @@ const manrope = Manrope({
 
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  weight: "400",
+  weight: "variable",
   variable: "--font-source-serif",
-  display: "optional",
-  preload: false,
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {

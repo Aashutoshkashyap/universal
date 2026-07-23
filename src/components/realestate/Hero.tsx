@@ -19,10 +19,7 @@ export default function Hero() {
       {/* ── Hero Text ── */}
       <div className="relative z-20 flex flex-1 flex-col justify-center px-6 pb-44 pt-24 sm:px-14 sm:pb-36 sm:pt-20 lg:px-28 lg:pb-4">
         <div className="max-w-3xl space-y-4 sm:space-y-6">
-          <h1
-            style={{ fontFamily: "Georgia, Cambria, 'Times New Roman', serif" }}
-            className="text-[36px] font-semibold leading-[1.06] text-white drop-shadow-md min-[380px]:text-[40px] sm:text-[52px] lg:text-[68px]"
-          >
+          <h1 className="font-serif text-[36px] font-semibold leading-[1.06] text-white drop-shadow-md min-[380px]:text-[40px] sm:text-[52px] lg:text-[68px]">
             Where Future Engineers, Innovators, and Leaders Begin Their Journey.
           </h1>
           <p className="max-w-2xl text-sm font-light leading-relaxed text-white/90 sm:text-lg">
