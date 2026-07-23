@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Manrope, Source_Serif_4 } from "next/font/google";
 
+const socialImageUrl =
+  "https://portfolio-tawny-five-47.vercel.app/opengraph-image.png";
+
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
@@ -39,12 +42,21 @@ export const metadata: Metadata = {
     title: "Universal Engineering & Science College | UESC",
     description:
       "Engineering, architecture, research, and practical learning in Chakupat, Lalitpur.",
+    images: [
+      {
+        url: socialImageUrl,
+        width: 1200,
+        height: 630,
+        alt: "Universal Engineering & Science College in Chakupat, Lalitpur",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Universal Engineering & Science College | UESC",
     description:
       "Engineering, architecture, research, and practical learning in Chakupat, Lalitpur.",
+    images: [socialImageUrl],
   },
   category: "education",
 };

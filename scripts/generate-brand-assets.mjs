@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 
 const logoPath = fileURLToPath(new URL("../assets/images/UESC-logo4.png", import.meta.url));
 const iconPath = fileURLToPath(new URL("../src/app/icon.png", import.meta.url));
-const socialCardPath = fileURLToPath(new URL("../src/app/opengraph-image.png", import.meta.url));
+const socialCardPath = fileURLToPath(new URL("../public/opengraph-image.png", import.meta.url));
 
 const icon = await sharp(logoPath)
   .resize({ width: 118, height: 118, fit: "inside" })
