@@ -245,6 +245,25 @@ export default function AdminPanel() {
           </div>
         </div>
 
+        {/* FAQ Section */}
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-black/5 space-y-5">
+          <h2 className="text-2xl font-serif border-b pb-2">FAQ</h2>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Badge Text</label>
+              <input value={content.faq?.badge || ""} onChange={(e) => handleChange('faq', 'badge', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Title</label>
+              <input value={content.faq?.title || ""} onChange={(e) => handleChange('faq', 'title', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-black/70 mb-1">Description</label>
+              <textarea rows={4} value={content.faq?.description || ""} onChange={(e) => handleChange('faq', 'description', e.target.value)} className="w-full border p-3 rounded-lg outline-none focus:border-blue-500" />
+            </div>
+          </div>
+        </div>
+
         {/* Find Us Section */}
         <div className="bg-white p-8 rounded-2xl shadow-sm border border-black/5 space-y-5">
           <h2 className="text-2xl font-serif border-b pb-2">Find Us (Footer)</h2>

@@ -28,6 +28,25 @@ export default function Testimonials() {
           {/* ── LEFT COLUMN ── */}
           <div className="flex flex-col gap-6">
 
+            {/* Large Portrait Photo Card */}
+            <div className="relative rounded-2xl overflow-hidden h-[320px] bg-neutral-900 group">
+              <img
+                src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&w=600&q=80"
+                className="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-700"
+                alt="Student Portrait"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-5 h-5 rounded bg-white/20 flex items-center justify-center">
+                    <span className="text-white text-[10px] font-bold">U</span>
+                  </div>
+                  <span className="text-white/80 text-[10px] font-medium tracking-wider uppercase">UESC Campus</span>
+                </div>
+                <p className="text-white font-semibold text-lg leading-snug font-serif">Building the future of<br />engineering in Nepal.</p>
+              </div>
+            </div>
+
             {/* Testimonial 1 */}
             <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
               <div className="text-4xl text-blue-600/20 font-serif leading-none mb-3">"</div>
@@ -57,23 +76,6 @@ export default function Testimonials() {
                 </div>
                 <div>
                   <p className="text-[13px] font-semibold text-black">M.Sc. Student</p>
-                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial 7 */}
-            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-4xl text-indigo-600/20 font-serif leading-none mb-3">"</div>
-              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
-                The projects and technical training at UESC made me feel prepared during my internship. I was able to contribute with confidence from day one.
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm flex-shrink-0">
-                  FY
-                </div>
-                <div>
-                  <p className="text-[13px] font-semibold text-black">Final-Year Student</p>
                   <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
                 </div>
               </div>
@@ -118,6 +120,23 @@ export default function Testimonials() {
               </div>
             </div>
 
+            {/* Testimonial 7 */}
+            <div className="bg-white rounded-2xl p-7 border border-black/5 shadow-sm hover:shadow-md transition-shadow">
+              <div className="text-4xl text-indigo-600/20 font-serif leading-none mb-3">"</div>
+              <p className="text-[15px] text-black/70 leading-relaxed mb-8 font-light">
+                The projects and technical training at UESC made me feel prepared during my internship. I was able to contribute with confidence from day one.
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-sm flex-shrink-0">
+                  FY
+                </div>
+                <div>
+                  <p className="text-[13px] font-semibold text-black">Final-Year Student</p>
+                  <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
+                </div>
+              </div>
+            </div>
+
           </div>
 
           {/* ── RIGHT COLUMN ── */}
@@ -137,6 +156,25 @@ export default function Testimonials() {
                   <p className="text-[13px] font-semibold text-black">Architecture Student</p>
                   <p className="text-[11px] text-black/40 mt-0.5">(Replace with real name)</p>
                 </div>
+              </div>
+            </div>
+
+            {/* Large Portrait Photo Card */}
+            <div className="relative rounded-2xl overflow-hidden h-[280px] bg-neutral-900 group">
+              <img
+                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80"
+                className="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-700"
+                alt="Student Project"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-5 h-5 rounded bg-white/20 flex items-center justify-center">
+                    <span className="text-white text-[10px] font-bold">U</span>
+                  </div>
+                  <span className="text-white/80 text-[10px] font-medium tracking-wider uppercase">Innovation</span>
+                </div>
+                <p className="text-white font-semibold text-lg leading-snug font-serif">Turning ideas into<br />real-world impact.</p>
               </div>
             </div>
 

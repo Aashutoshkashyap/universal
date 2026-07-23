@@ -33,6 +33,11 @@ export const defaultContent = {
     title: "Stay Connected with What's Happening at UESC",
     description: "Discover the latest news, academic achievements, technical workshops, seminars, student activities, and campus events that shape the UESC community. Stay informed about opportunities to learn, connect, and grow beyond the classroom."
   },
+  faq: {
+    badge: "FREQUENTLY ASKED QUESTIONS",
+    title: "Have Questions? We're Here to Help.",
+    description: "Find answers to some of the most frequently asked questions about admissions, academic programs, campus life, scholarships, and student services. If you need further assistance, our admissions team is always ready to help."
+  },
   findUs: {
     title: "Find Us",
     address: "137/20, Manido Marg, Chakupat, Ward 11, Lalitpur Metropolitan City, Nepal",

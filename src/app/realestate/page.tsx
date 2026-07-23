@@ -7,6 +7,7 @@ import AcademicPrograms from "../../components/realestate/AcademicPrograms";
 import CareerDevelopment from "../../components/realestate/CareerDevelopment";
 import NewsAndEvents from "../../components/realestate/NewsAndEvents";
 import Testimonials from "../../components/realestate/Testimonials";
+import FAQ from "../../components/realestate/FAQ";
 import Footer from "../../components/realestate/Footer";
 
 export default function RealEstate() {
@@ -21,6 +22,7 @@ export default function RealEstate() {
       <CareerDevelopment />
       <NewsAndEvents />
       <Testimonials />
+      <FAQ />
       <Footer />
     </div>
   );
